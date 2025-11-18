@@ -10,18 +10,27 @@ def main():
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
+    bg_img_flipped = pg.image.load("fig/pg_bg.jpg")
+    bg_img_flipped = pg.transform.flip(bg_img_flipped, True, False)
+    bg_img_2 = pg.image.load("fig/pg_bg.jpg")
     kokaton_img = pg.image.load("fig/3.png")
     kokaton_img = pg.transform.flip(kokaton_img, True, False)
     tmr = 0
+    bg_val = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [-tmr, 0])
-        screen.blit(pg.transform.flip(bg_img, True, False), [1600 - tmr, 0])
+        screen.blit(bg_img, [-bg_val, 0])
+        screen.blit(bg_img_flipped, [1600 - bg_val, 0])
+        screen.blit(bg_img_2, [3200 - bg_val, 0])
+        
         screen.blit(kokaton_img, [300, 200])
         pg.display.update()
-        tmr += 1        
+        tmr += 1
+        bg_val += 5
+        if bg_val == 3200:
+            bg_val = 0
         clock.tick(200)
 
 
