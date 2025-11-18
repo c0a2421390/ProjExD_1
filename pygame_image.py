@@ -18,7 +18,7 @@ def main():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [-tmr, 0])
-        screen.blit(bg_img, [800 - tmr, 0])
+        screen.blit(pg.transform.flip(bg_img, True, False), [1600 - tmr, 0])
         screen.blit(kokaton_img, [300, 200])
         pg.display.update()
         tmr += 1        
