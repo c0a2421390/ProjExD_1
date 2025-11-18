@@ -20,21 +20,30 @@ def main():
     tmr = 0
     bg_val = 0
     bg_speed = 1
+    kk_x = 0
+    kk_y = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            kokaton_rct.move_ip(0-bg_speed, -1)
+            kk_x = 0
+            kk_y = -1
         elif key_lst[pg.K_DOWN]:
-            kokaton_rct.move_ip(0-bg_speed, 1)
+            kk_x = 0
+            kk_y = 1
         elif key_lst[pg.K_LEFT]:
-            kokaton_rct.move_ip(-1-bg_speed, 0)
+            kk_x = -bg_speed*2
+            kk_y = 0
         elif key_lst[pg.K_RIGHT]:
-            kokaton_rct.move_ip(2-bg_speed, 0)
+            kk_x = bg_speed*2
+            kk_y = 0
         else:
-            kokaton_rct.move_ip(-bg_speed, 0)
+            kk_x = 0
+            kk_y = 0
+
+        kokaton_rct.move_ip(kk_x-bg_speed, kk_y)
 
         screen.blit(bg_img, [-bg_val, 0])
         screen.blit(bg_img_flipped, [1600 - bg_val, 0])
